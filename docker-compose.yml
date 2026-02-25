@@ -1,0 +1,35 @@
+version: '3'
+services:
+  # Instâncias do WebApp com as cores solicitadas
+  webapp-rosa:
+    image: mmumshad/simple-webapp-color
+    environment:
+      - APP_COLOR=pink
+
+  webapp-vermelho:
+    image: mmumshad/simple-webapp-color
+    environment:
+      - APP_COLOR=red
+
+  webapp-verde:
+    image: mmumshad/simple-webapp-color
+    environment:
+      - APP_COLOR=green
+
+  webapp-azul:
+    image: mmumshad/simple-webapp-color
+    environment:
+      - APP_COLOR=blue
+
+  # Balanceador de Carga HAProxy
+  haproxy:
+    image: haproxy:latest
+    ports:
+      - "80:80"
+    volumes:
+      - ./haproxy.cfg:/usr/local/etc/haproxy/haproxy.cfg:ro
+    depends_on:
+      - webapp-rosa
+      - webapp-vermelho
+      - webapp-verde
+      - webapp-azul
