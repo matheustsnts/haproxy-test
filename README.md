@@ -25,4 +25,3 @@ A solução utiliza a imagem [mmumshad/simple-webapp-color](https://hub.docker.c
 - [Git](https://git-scm.com)
 
 ---
-Gerado automaticamente pelo script `README.sh`
