@@ -1,0 +1,131 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: webapp-rosa
+  namespace: gitops-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: webapp-rosa
+  template:
+    metadata:
+      labels:
+        app: webapp-rosa
+    spec:
+      containers:
+      - name: webapp-rosa
+        image: mmumshad/simple-webapp-color
+        env:
+        - name: APP_COLOR
+          value: "pink"
+        ports:
+        - containerPort: 8080
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: webapp-vermelho
+  namespace: gitops-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: webapp-vermelho
+  template:
+    metadata:
+      labels:
+        app: webapp-vermelho
+    spec:
+      containers:
+      - name: webapp-vermelho
+        image: mmumshad/simple-webapp-color
+        env:
+        - name: APP_COLOR
+          value: "red"
+        ports:
+        - containerPort: 8080
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: webapp-verde
+  namespace: gitops-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: webapp-verde
+  template:
+    metadata:
+      labels:
+        app: webapp-verde
+    spec:
+      containers:
+      - name: webapp-verde
+        image: mmumshad/simple-webapp-color
+        env:
+        - name: APP_COLOR
+          value: "green"
+        ports:
+        - containerPort: 8080
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: webapp-azul
+  namespace: gitops-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: webapp-azul
+  template:
+    metadata:
+      labels:
+        app: webapp-azul
+    spec:
+      containers:
+      - name: webapp-azul
+        image: mmumshad/simple-webapp-color
+        env:
+        - name: APP_COLOR
+          value: "blue"
+        ports:
+        - containerPort: 8080
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: haproxy
+  namespace: gitops-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: haproxy
+  template:
+    metadata:
+      labels:
+        app: haproxy
+    spec:
+      containers:
+      - name: haproxy
+        image: haproxy:latest
+        ports:
+        - containerPort: 80
+        volumeMounts:
+        - name: haproxy-config-volume
+          mountPath: /usr/local/etc/haproxy/haproxy.cfg
+          subPath: haproxy.cfg
+      volumes:
+      - name: haproxy-config-volume
+        configMap:
+          name: haproxy-config
+          items:
+          - key: haproxy.cfg
+            path: haproxy.cfg

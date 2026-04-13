@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: haproxy-config
+  namespace: gitops-app
+data:
+  haproxy.cfg: |
+    frontend http-in
+        bind *:80
+        default_backend color-servers
+
+    backend color-servers
+        balance roundrobin
+        server s1 webapp-rosa:8080 check
+        server s2 webapp-vermelho:8080 check
+        server s3 webapp-verde:8080 check
+        server s4 webapp-azul:8080 check
