@@ -5,7 +5,7 @@ metadata:
   namespace: gitops-app
 spec:
   rules:
-  - host: haproxy.local
+  - host: haproxy.127.0.0.1.sslip.io
     http:
       paths:
       - path: /
