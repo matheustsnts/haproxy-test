@@ -3,8 +3,6 @@ kind: Ingress
 metadata:
   name: haproxy-ingress
   namespace: gitops-app
-  annotations:
-    nginx.ingress.kubernetes.io/rewrite-target: /
 spec:
   rules:
   - host: haproxy.local

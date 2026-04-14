@@ -5,10 +5,18 @@ metadata:
   namespace: gitops-app
 data:
   haproxy.cfg: |
+    global
+        log stdout format raw local0
+    defaults
+        log global
+        mode http
+        option httplog
+        timeout connect 5000ms
+        timeout client 50000ms
+        timeout server 50000ms
     frontend http-in
         bind *:80
         default_backend color-servers
-
     backend color-servers
         balance roundrobin
         server s1 webapp-rosa:8080 check

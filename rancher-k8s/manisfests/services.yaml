@@ -7,10 +7,7 @@ spec:
   selector:
     app: webapp-rosa
   ports:
-  - protocol: TCP
-    port: 8080
-    targetPort: 8080
-
+  - port: 8080
 ---
 apiVersion: v1
 kind: Service
@@ -21,10 +18,7 @@ spec:
   selector:
     app: webapp-vermelho
   ports:
-  - protocol: TCP
-    port: 8080
-    targetPort: 8080
-
+  - port: 8080
 ---
 apiVersion: v1
 kind: Service
@@ -35,10 +29,7 @@ spec:
   selector:
     app: webapp-verde
   ports:
-  - protocol: TCP
-    port: 8080
-    targetPort: 8080
-
+  - port: 8080
 ---
 apiVersion: v1
 kind: Service
@@ -49,10 +40,7 @@ spec:
   selector:
     app: webapp-azul
   ports:
-  - protocol: TCP
-    port: 8080
-    targetPort: 8080
-
+  - port: 8080
 ---
 apiVersion: v1
 kind: Service
@@ -66,4 +54,3 @@ spec:
   - protocol: TCP
     port: 80
     targetPort: 80
-  type: LoadBalancer

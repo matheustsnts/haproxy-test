@@ -21,7 +21,6 @@ spec:
           value: "pink"
         ports:
         - containerPort: 8080
-
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -46,7 +45,6 @@ spec:
           value: "red"
         ports:
         - containerPort: 8080
-
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -71,7 +69,6 @@ spec:
           value: "green"
         ports:
         - containerPort: 8080
-
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -96,7 +93,6 @@ spec:
           value: "blue"
         ports:
         - containerPort: 8080
-
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -126,6 +122,3 @@ spec:
       - name: haproxy-config-volume
         configMap:
           name: haproxy-config
-          items:
-          - key: haproxy.cfg
-            path: haproxy.cfg
